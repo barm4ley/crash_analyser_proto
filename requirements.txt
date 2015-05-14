@@ -1,0 +1,17 @@
+Flask
+Jinja2
+MarkupSafe
+Werkzeug
+amqp
+anyjson
+billiard
+celery
+celery-with-mongodb
+greenlet
+itsdangerous
+jsonschema
+kombu
+pymongo
+pytz
+requests
+six
