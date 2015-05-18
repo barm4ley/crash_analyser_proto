@@ -13,6 +13,8 @@ def thread_func():
             result = conn.upload_report(conn.FULL_REPORT_STR, full_report)
 
 def main():
+    conn.DEBUG_ENABLED = False
+
     threads = []
     for i in range(10):
         t = threading.Thread(target = thread_func)

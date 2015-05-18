@@ -13,8 +13,11 @@ BASIC_REPORT_STR = 'basic_reports'
 FULL_REPORT_STR = 'full_reports'
 BUCKETS_STR = 'buckets'
 
+DEBUG_ENABLED = True
+
 def print_data_exchange(url, data_to, data_from):
-    return
+    if not DEBUG_ENABLED:
+        return
     pprint('----------------------------------------------------------')
     pprint('URL: ' + url, width = 120)
     pprint('To:')

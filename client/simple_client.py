@@ -7,6 +7,7 @@ def main():
 
     pprint('==========================================================')
     pprint('==========================================================')
+    conn.DEBUG_ENABLED = True
     basic_report = conn.prepare_basic_report(conn.generate_basic_report())
     result = conn.upload_report(conn.BASIC_REPORT_STR, basic_report)
     if result['full_report_needed']:
