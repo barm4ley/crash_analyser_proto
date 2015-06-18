@@ -5,7 +5,7 @@
 #CELERY_RESULT_BACKEND = 'amqp'
 
 # Redis
-CELERY_RESULT_BACKEND = 'redis://172.19.8.102:6379/0'
+CELERY_RESULT_BACKEND = 'redis://172.19.8.101:6379/0'
 
 # MongoDB
 #CELERY_RESULT_BACKEND = "mongodb://172.19.8.101:27017/"
@@ -37,6 +37,18 @@ CELERY_RESULT_SERIALIZER = CELERY_TASK_SERIALIZER
 #--- OTHER OPTIONS ---#
 CELERY_DISABLE_RATE_LIMITS = True
 
+#---------------------------------------------------------------#
+from datetime import timedelta
+
+CELERYBEAT_SCHEDULE = {
+    'do-each-10-sec': {
+        'task': 'test.task',
+        'schedule': timedelta(seconds=10)
+    },
+}
+
+CELERY_TIMEZONE = 'UTC'
+#---------------------------------------------------------------#
 
 
 DB_URL = "mongodb://172.19.8.101:27017"

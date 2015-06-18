@@ -61,7 +61,7 @@ class MongoAccessorTask(Task):
         insert_result = self.db[coll].insert_one(report)
         report_id = str(insert_result.inserted_id)
         return report_id
-    
+
     def get_bucket_id(self, criteria):
         '''Get bucket ID that corresponds to some criteria'''
         bucket_id = None
@@ -84,7 +84,7 @@ DEBUG = False
 
 def log_debug(func):
     "This decorator dumps out the arguments passed to a function before calling it"
-    
+
     if not DEBUG:
         return func
 
@@ -140,7 +140,7 @@ def add_full_report_task(self, report):
 
     data = report['data']
     meta = report['meta']
-    
+
     # Convert document(append basic object id to the full report document)
     data['basic_report_id'] = meta['basic_report_id']
 
@@ -158,3 +158,7 @@ def add_full_report_task(self, report):
         self.retry(exc = exc)
 
     return {'report_id': report_id, 'bucket_id': bucket_id}
+
+@app.task(name='test.task', bind=True)
+def test_task(self):
+    logger.info("10 secs passed...")
