@@ -1,17 +1,10 @@
 Flask
-Jinja2
-MarkupSafe
-Werkzeug
 amqp
-anyjson
-billiard
-celery
+celery[redis] == 3.1.18
 celery-with-mongodb
-greenlet
-itsdangerous
+flower
 jsonschema
-kombu
 pymongo
 pytz
 requests
-six
+envtpl
