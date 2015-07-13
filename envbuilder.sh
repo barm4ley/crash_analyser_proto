@@ -1,0 +1,13 @@
+#!/bin/sh
+
+HOST_ADDR=`netstat -rn | grep "^0.0.0.0 " | cut -d " " -f10`
+ENV_FILE=.env
+
+rm .env
+
+cat > $ENV_FILE <<xENV_VARS
+RESULT_BACKEND_ADDR=$HOST_ADDR
+MESSAGE_BROKER_ADDR=$HOST_ADDR
+STORAGE_ADDR=$HOST_ADDR
+xENV_VARS
+
