@@ -1,0 +1,31 @@
+
+
+web:
+    build: .
+    volumes:
+        - .:/home/user
+    ports:
+        - "5000:5000"
+    #environment:
+        #- RESULT_BACKEND_ADDR
+        #- RESULT_BACKEND_PORT
+
+        #- MESSAGE_BROKER_ADDR
+        #- MESSAGE_BROKER_PORT
+        #- MESSAGE_BROKER_USER
+        #- MESSAGE_BROKER_PASS
+
+        #- STORAGE_ADDR
+        #- STORAGE_PORT
+    env_file: .env
+    command: /home/users/server/app.py
+
+
+worker:
+    build: .
+    volumes:
+        - .:/home/user
+    ports:
+        - "5555:5555"
+    env_file: .env
+    command: celery worker  --loglevel=DEBUG --config=celeryconfig
