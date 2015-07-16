@@ -1,0 +1,14 @@
+
+# This one is topmost
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = false
+
+[*.{js,py}]
+charset = utf-8
+
+[*.py]
+indent_style = space
+indent_size = 4
