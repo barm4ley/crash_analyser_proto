@@ -1,6 +1,6 @@
 
 venv/*
-__*
+__pycache__/*
 *.swp
 *.bak
 
