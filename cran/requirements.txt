@@ -1,5 +1,5 @@
-Flask
 amqp
+flask
 celery[redis] == 3.1.18
 celery-with-mongodb
 flower
@@ -8,3 +8,6 @@ pymongo
 pytz
 requests
 envtpl
+
+tox
+pytest

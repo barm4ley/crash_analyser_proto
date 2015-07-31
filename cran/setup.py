@@ -1,13 +1,40 @@
+import sys
 from setuptools import setup, find_packages
+from setuptools.command.test import test as TestCommand
 
-print(find_packages())
+
+class ToxTest(TestCommand):
+    user_options = [('tox-args=', 'a', "Arguments to pass to tox")]
+    def initialize_options(self):
+        TestCommand.initialize_options(self)
+        self.tox_args = None
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import tox
+        import shlex
+        args = self.tox_args
+        if args:
+            args = shlex.split(self.tox_args)
+        errno = tox.cmdline(args=args)
+        sys.exit(errno)
+
 
 setup(
-    name='cran-server',
-    version='0.1dev',
-    #packages=['cran_server', 'cran_server.tasks'],
-    packages=find_packages(),
-    license='Creative Commons Attribution-Noncommercial-Share Alike license',
-    long_description=open('README.md').read(),
-    scripts=['cran-server.py']
+    name             = 'cran-server',
+    version          = '0.0.1',
+    packages         = find_packages(),
+    license          = 'PROPRIETARY',
+    long_description = open('README.md').read(),
+    scripts          = ['cran-server.py'],
+
+    author           = 'Max Musich',
+    author_email     = 'maxim@unity3d.com',
+    url              = 'unity3d.com',
+
+    tests_require     = ['tox'],
+    cmdclass         = {'test': ToxTest}
 )
