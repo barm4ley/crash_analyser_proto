@@ -22,13 +22,16 @@ class ToxTest(TestCommand):
         errno = tox.cmdline(args=args)
         sys.exit(errno)
 
+def readme():
+    with open('README.rst') as f:
+        return f.read()
 
 setup(
     name             = 'cran-server',
     version          = '0.0.1',
     packages         = find_packages(),
     license          = 'PROPRIETARY',
-    long_description = open('README.md').read(),
+    long_description = readme(),
     scripts          = ['cran-server.py'],
 
     author           = 'Max Musich',
